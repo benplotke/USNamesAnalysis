@@ -5,12 +5,31 @@ import heapq
 import matplotlib.pyplot as plt
 from random import shuffle
 
+# Size of plots. Used to calculate size of display for plot matrices
 DEFAULT_WIDTH = 6.4
 DEFAULT_HEIGHT = 4.8
 
-# ToDo
+# This project quickly became an accretion of coupled code. Hope the overview helps. Sorry
 
-# Possible analysis
+# Component Overview
+#   Plot - Class containing data for a plot. Also has static methods for getting analysis from TimelineCollection and
+#         generating plots for it.
+#   TimelineCollection - Class that contains all the TimelineCollection and methods for doing analysis on the data
+#   Timeline - Class containing a Name and an InfiniteZeroedList with the counts per year for that name
+#   Name - Class with spelling and sex fields
+#   InfiniteZeroedList - Class allows setting values at indexes and returns a default value for indices not yet set.
+
+# Flow Overview
+#  1) Call TimelineCollection.load_names, the factory function which takes the directory containing the count data.
+#  2) Call Plot methods to generate the different analyses and save them to pngs
+#  3) Call repl which repeatedly prompts the user for a name, then displays the proportion and counts for the name
+
+# Todo
+#   - Split Timeline and Plot code into separate files
+#   - Add type hints
+#   - Add docstrings or make method private
+
+# Possible next analyses
 #   - list most unisex names
 #   - add name combining
 #   - predict next top name
@@ -523,9 +542,6 @@ class Plot:
         cls.save_jagged_matrix(matrix, fname)
 
 
-print("loading names")
-timelines = TimelineCollection.load_names("USNames")
-
 def repl(timelines):
     while True:
         name = input("Name: ")
@@ -546,8 +562,11 @@ def repl(timelines):
         Plot.display_jagged_matrix(matrix)
 
 
-#Plot.plot_top_names_count_proportion_derivative(timelines, 'regression.top_names_count_proportion_and_derivative_matrix.png')
-#Plot.plot_name_frequency_histogram(timelines, 'regression.historgram_top_10_names_by_decade.png')
-#Plot.plot_top_derivative_names(timelines, 'top_10_derivatives.png')
+print("loading names")
+timelines = TimelineCollection.load_names("USNames")
+
+# Plot.plot_top_names_count_proportion_derivative(timelines, 'regression.top_names_count_proportion_and_derivative_matrix.png')
+# Plot.plot_name_frequency_histogram(timelines, 'regression.historgram_top_10_names_by_decade.png')
+# Plot.plot_top_derivative_names(timelines, 'top_10_derivatives.png')
 # Plot.plot_commonality_quantiles_by_decade(timelines, 100, 'commonality_distribution_by_decade.png')
 repl(timelines)

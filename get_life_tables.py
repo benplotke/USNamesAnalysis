@@ -1,6 +1,8 @@
 import aiohttp
 import asyncio
 
+# Downloads period life tables from the social security administration
+
 async def get_table(session, url, path):
     async with session.get(url) as resp:
         text = await resp.text()
