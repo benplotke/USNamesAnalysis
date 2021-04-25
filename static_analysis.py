@@ -1,5 +1,5 @@
 import plotter
-from timelines import get_timelines
+from timelines import get_timelines, TimelineCollection
 import os
 
 
@@ -9,7 +9,7 @@ else:
     PLOT_DIRECTORY = 'plots'
 
 
-def plot_name_frequency_histogram(timelines, fname):
+def plot_name_frequency_histogram(timelines: TimelineCollection, fname: str) -> None:
 
     print('Generating top ten histograms')
 
@@ -45,7 +45,8 @@ def plot_name_frequency_histogram(timelines, fname):
 
     plotter.save_jagged_matrix(matrix, fname)
 
-def plot_top_names_count_proportion_derivative(timelines, fname):
+
+def plot_top_names_count_proportion_derivative(timelines: TimelineCollection, fname: str) -> None:
 
     print('Generating top count plots')
 
@@ -76,7 +77,8 @@ def plot_top_names_count_proportion_derivative(timelines, fname):
 
     plotter.save_jagged_matrix(matrix, fname)
 
-def plot_top_derivative_names(timelines, fname):
+
+def plot_top_derivative_names(timelines: TimelineCollection, fname: str) -> None:
 
     matrix = []
     first_year = timelines.first_year
@@ -108,7 +110,8 @@ def plot_top_derivative_names(timelines, fname):
 
     plotter.save_jagged_matrix(matrix, fname)
 
-def plot_commonality_quantiles_by_decade(timelines, granularity, fname):
+
+def plot_commonality_quantiles_by_decade(timelines: TimelineCollection, granularity: int, fname: str) -> None:
 
     print('Generating name commonality preference histograms')
 

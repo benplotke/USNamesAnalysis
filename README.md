@@ -14,12 +14,12 @@ Additionally, I am setting out to be able to approximate the expected age of som
 * Social Security Administration - [Baby names since the 1880](https://www.ssa.gov/oact/babynames/limits.html)
 * Social Security Administration - [Period life tables](https://www.ssa.gov/oact/NOTES/as120/LifeTables_Body.html#wp1168561)
 
-# Todo
+# ToDo
 
-* Add type hints
 * Add docstrings and/or make method private
 * Add code overview to readme
 * Add regression tests for static_analysis.py
+* Do inline ToDos
 
 # Possible Next Analyses
 

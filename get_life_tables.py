@@ -1,4 +1,4 @@
-import aiohttp
+from aiohttp import ClientSession
 import asyncio
 import os
 
@@ -9,13 +9,14 @@ import os
 OUT_DIRECTORY = 'period_life_expectancy_tables'
 
 
-async def get_table(session, url, path):
+async def get_table(session: ClientSession, url: str, path: str) -> tuple[str, str]:
     async with session.get(url) as resp:
         text = await resp.text()
-        return (text, path)
+        return text, path
 
-async def get_tables():
-    async with aiohttp.ClientSession() as session:
+
+async def get_tables() -> None:
+    async with ClientSession() as session:
         tasks = []
         for year in range(1900, 2021, 10):
             url = f'https://www.ssa.gov/oact/NOTES/as120/LifeTables_Tbl_6_{year}.html'
@@ -32,5 +33,3 @@ if not os.path.exists(OUT_DIRECTORY):
     os.makedirs(OUT_DIRECTORY)
 
 asyncio.run(get_tables())
-
-
