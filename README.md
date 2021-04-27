@@ -26,4 +26,3 @@ Additionally, I am setting out to be able to approximate the expected age of som
 * list most unisex names
 * add name combining
 * predict next top name
-* calculate expected age
