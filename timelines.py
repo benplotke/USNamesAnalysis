@@ -1,9 +1,10 @@
 from __future__ import annotations
-import regex
+from regex import search
 import os
 import heapq
 from random import shuffle
 from typing import Union, Any, Iterator, Callable
+from my_types import vector, numeric
 from collections.abc import Iterable
 
 # Component Overview
@@ -16,10 +17,7 @@ from collections.abc import Iterable
 
 
 _NAME_DIRECTORY = 'us_names'
-
-
-numeric = Union[int, float]
-vector = list[numeric]
+_timeline_collection = None
 
 
 # smooth - the points to the left and to the right to average
@@ -213,7 +211,7 @@ class TimelineCollection:
                 continue
 
             file_path = os.path.join(dir_name, file_name)
-            year = int(regex.search('yob(\d{4})\.txt', file_name)[1])
+            year = int(search('yob(\d{4})\.txt', file_name)[1])
             years.append(year)
 
             with open(file_path, 'r') as file:
@@ -361,5 +359,8 @@ class TimelineCollection:
 
 
 def get_timelines():
-    print('loading names')
-    return TimelineCollection.load_names(_NAME_DIRECTORY)
+    global _timeline_collection
+    if not _timeline_collection:
+        print('loading names')
+        _timeline_collection = TimelineCollection.load_names(_NAME_DIRECTORY)
+    return _timeline_collection

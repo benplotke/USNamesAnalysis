@@ -1,13 +1,10 @@
 import matplotlib.pyplot as plt
 from matplotlib.axes import Axes
-from typing import Union
+from my_types import vector
 
 # Size of plots. Used to calculate size of display for plot matrices
 DEFAULT_WIDTH = 6.4
 DEFAULT_HEIGHT = 4.8
-
-numeric = Union[int, float]
-vector = list[numeric]
 
 
 class Plot:
